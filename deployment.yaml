@@ -1,7 +1,8 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: rancher-ns
+  name: example-greenhouse
+  namespace: rancher-ns
 spec:
   selector:
     app: greenhouse
