@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: greenhouse-service
+  name: rancher-ns
 spec:
   selector:
     app: greenhouse
@@ -15,6 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: example-greenhouse
+  namespace: rancher-ns
   labels:
     app: greenhouse
 spec:
@@ -28,9 +29,9 @@ spec:
         app: greenhouse
     spec:
       imagePullSecrets:
-      - name: pipeline-docker-registry
+      - name: rancher-harbor
       containers:
       - name: maven
-        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+        image: 10.10.1.148:30002/pipeline/example:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 8080
