@@ -3,15 +3,17 @@ stages:
   steps:
   - runScriptConfig:
       image: maven:3-jdk-7
-      shellScript: |-
-        mvn clean install
+      shellScript: mvn clean install
 - name: Publish
   steps:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: 10.10.1.148:30002/pipeline/example:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: 10.10.1.148:30002
 - name: Deploy
   steps:
   - applyYamlConfig:
       path: ./deployment.yaml
+notification: {}
