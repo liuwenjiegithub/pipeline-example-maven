@@ -10,7 +10,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: example-greenhouse:${CICD_EXECUTION_SEQUENCE}
+      tag: 10.10.1.148:30002/pipeline/example:${CICD_EXECUTION_SEQUENCE}
 - name: Deploy
   steps:
   - applyYamlConfig:
